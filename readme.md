@@ -1,4 +1,4 @@
-# Weocome to D. Wu's site!
+# Welcome to D. Wu's site!
 
 I would post about my personal interests, such as mathematics or classical music. I don't want to get involved in HTML too much, so I will just keep appending stuff to this Markdown file.
 
