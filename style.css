@@ -3,7 +3,7 @@
 background-color: #ffffff;
 background-repeat: no-repeat;
 font-family: Arial, Verdana;
-font-size: 12px;
+font-size: 16px;
 font-style: normal;
 font-weight: normal;
 margin: 12.5mm; 
@@ -25,10 +25,10 @@ padding: 0;
 {
 background-color: #CCDDEE;
 color: #555588;
-font-size: 14px;
+font-size: 16px;
 text-align: center;
 vertical-align: baseline;
-line-height: 18px;
+line-height: 20px;
 border-color: #999999;
 border-style: solid;
 border-width: 1px;
@@ -40,6 +40,7 @@ padding-left: 10px;
    border: 1px solid #E2E2E2;
    border-collapse: collapse;
    padding-left: 5px;
+   font-size: 16px;
    text-align: left;
    vertical-align: middle;
  }
@@ -57,10 +58,10 @@ padding-left: 10px;
 {
 background-color: #CCDDEE;
 color: #555588;
-font-size: 14px;
+font-size: 16px;
 text-align: center;
 vertical-align: baseline;
-line-height: 18px;
+line-height: 20px;
 border-color: #999999;
 border-style: solid;
 border-width: 1px;
@@ -164,6 +165,7 @@ font-style: italic;
 
 A:link, A:visited, A:active {
 color: #7777AA;
+font-size: 16px;
 text-decoration: underline;
 }
 
