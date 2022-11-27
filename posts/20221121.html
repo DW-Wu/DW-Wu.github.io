@@ -1,0 +1,264 @@
+<html>
+
+<body>
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>D.-W. Wu's Personal Site</title>
+        <link href="../style.css" rel="stylesheet" type="text/css">
+
+        <!-- The following lines enable MathJax to render formulae -->
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    </head>
+
+    <!-- Defining macros -->
+    \[
+    \renewcommand{\d}{\mathop{}\!\mathrm{d}} % differential symbol
+    \newcommand{\D}{\mathop{}\!\mathrm{D}} % differential symbol
+    \newcommand{\dif}{\mathrm{d}}
+    \newcommand{\Dif}{\mathrm{D}}
+    \newcommand{\pt}{\partial}
+
+    \newcommand{\ve}{\varepsilon}
+    \newcommand{\vph}{\varphi}
+    \newcommand{\e}{\mathrm{e}}
+    \newcommand{\ii}{\mathfrak{i}}
+
+    \newcommand{\<}{\left<} \renewcommand{\>}{\right>}
+
+        \newcommand{\ran}{\mathcal{R}}
+        \newcommand{\mcalP}{\mathcal{P}}
+        \newcommand{\BbbP}{\mathbb{P}}
+        \newcommand{\BbbR}{\mathbb{R}}
+
+        \newcommand{\prox}{\operatorname{prox}}
+        \newcommand{\dist}{\operatorname{dist}}
+        \newcommand{\argmin}{\mathop{\arg\min}}
+        \newcommand{\sgn}{\operatorname{sgn}}
+        \newcommand{\trace}{\operatorname{tr}}
+        \newcommand{\diag}{\operatorname{diag}}
+        \newcommand{\intbar}{\rlap{\,---}\int}
+        \newcommand{\smallintbar}{\rlap{\,\(-\)}\int}
+        \newcommand{\vb}{\mathbf}
+        \renewcommand{\divergence}{\operatorname{\rm div}}
+        \]
+
+        <table border="0" cellspacing="0px" align="center" width="95%">
+            <tbody>
+                <tr>
+                    <td class="datagrid-header">
+                        <a href="../index.html"> &LT;Back </a>
+                    </td>
+                    <td class="datagrid-header">
+                        <h2 class="body">
+                            A derivation of the shape variation
+                        </h2>
+                    </td>
+                </tr>
+                <tr class="datagrid-odd">
+                    <td class="datagrid" style="width:10" align="center">
+                        1
+                    </td>
+                    <td class="datagrid">
+                        Shape optimization is the minimization of certain target functionals with a physical region in
+                        space as the control variable. The target functional is often determined by a partial
+                        differential equation. For introductory purposes, we consider the following model problem.
+                        \begin{equation}
+                        \begin{aligned}
+                        \min_\Omega &\quad&& \Phi(\Omega)=\int_\Omega |\nabla u(y)|^2 \d y, \\
+                        \text{s.t.} &&& u|_{\pt\Omega}=g\circ\vb{T}^{-1}, \\
+                        &&& \triangle u=0, \\
+                        &&& (\text{maybe }|\Omega|=1?)
+                        \end{aligned}
+                        \end{equation}
+                        where $g(x)$ is a function defined on the boundary of the fixed computational domain
+                        $\Omega_0\subset\BbbR^d$, invariant with respect to the displacement of $\Omega$; $\vb
+                        T(x)=[T^1(x),\ldots,T^d(x)]$ is the diffeomorphism that maps $\Omega_0$ to the moving region
+                        $\Omega$.
+                        We are using the pair $(\Omega_0,\vb{T})$ to represent a region because it is more analytically
+                        tractable.
+                        We will need the variation in $\Phi(\vb{T})$ (equivalently written as $\Phi(\Omega)$ because
+                        they refer to the same thing) for a small perturbation $\delta\vb{T}$.
+                    </td>
+                </tr>
+                <tr class="datagrid-even">
+                    <td class="datagrid" align="center">
+                        2
+                    </td>
+                    <td class="datagrid">
+                        The constriant on $u$ is equivalent to another minimization problem
+                        \begin{equation}
+                        \begin{aligned}
+                        \min_\Omega &\quad&& \int_\Omega |\nabla u|^2\d y, \\
+                        \text{s.t.} &&& u|_{\pt\Omega}=g\circ\vb{T}^{-1}.
+                        \end{aligned}
+                        \end{equation}
+                    </td>
+                </tr>
+                <tr class="datagrid-odd">
+                    <td class="datagrid" align="center">
+                        3
+                    </td>
+                    <td class="datagrid">
+                        Now we formulate the same optimization problem in terms of \textit{control and state variables}.
+                        Let's pull $u|_\Omega$ back to the computational domain $\Omega_0$, and denote it as $v$, and
+                        the energy functional on $\Omega=\vb{T}(\Omega_0)$ is now defined on the fixed region
+                        $\Omega_0$. We view $\vb{T}(x)$ as the control variable and $v(x)$ the state variable, whose
+                        value is implicitly determined by $\vb{T}$ by the \textit{unconstrained} minimization of the
+                        energy functional $\Phi$. Using the chain rule we can write it as an integral on
+                        $\Omega_0$ instead.
+                        \begin{equation}
+                        \begin{aligned}
+                        J(v;\vb{T})&=\int_{\vb{T}(\Omega_0)} |\nabla_y u(y)|^2 \d y
+                        = \int_{\Omega_0} |(\nabla\vb{T}(x))^{-T} \nabla_x u(\vb{T} x)|^2 \d y \\
+                        &= \int_{\Omega_0} |(\nabla\vb{T})^{-T} \nabla v (x)|^2 \det(\nabla\vb{T}) \d x.
+                        \end{aligned}
+                        \end{equation}
+                    </td>
+                </tr>
+                <tr class="datagrid-even">
+                    <td class="datagrid" align="center">
+                        4
+                    </td>
+                    <td class="datagrid">
+                        We "believe" that the minimizer $v=v(\vb{T})$ is a smooth function of $\vb{T}$, and that the
+                        variation in $\Phi(\vb{T})=J(v(\vb{T});\vb{T})$ can therefore be written as
+                        \begin{equation}
+                        \delta\Phi = \<\frac{\delta J}{\delta v}, \delta v\>+ \<\frac{\delta J}{\delta \vb{T}},
+                                \delta\vb{T}\>.
+                                \end{equation}
+                                \textit{Since $v$ is the unconstrained minimizer, the variation in $J(v;\vb{T})$ with
+                                respect to $\delta v$ must be zero}, and so we are left with
+                                \begin{equation} \label{partial-var}
+                                \delta\Phi = \<\frac{(\delta J)_v}{\delta \vb{T}}, \delta\vb{T}\>,
+                                    \end{equation}
+                                    the partial variation of $J$ with respect to $\delta\vb{T}.$ (the notation $(\delta
+                                    J)_v$ was inspired by thermodynamics).
+                                    WLOG, let us suppose that $\vb{T}=\vb{id}$, because otherwise we may shift our
+                                    computational domain to $\vb{T}(\Omega_0)$ and conduct the analysis there.
+                    </td>
+                </tr>
+                <tr class="datagrid-odd">
+                    <td class="datagrid" align="center">
+                        5
+                    </td>
+                    <td class="datagrid">
+                        Now we explicitly compute $(\delta J)_v$ from $\delta\vb{T}$. First, we introduce some
+                        fundamental results on the variation of matrix functions.
+                        \begin{gather}
+                        \delta(\vb{A}^{-1}) = -\vb{A}^{-1} (\delta\vb{A}) \vb{A}^{-1}. \\
+                        \delta(\det\vb{A})= \trace(\delta\vb{A}) \det\vb{A}. \label{var-det}
+                        \end{gather}
+                    </td>
+                </tr>
+                <tr class="datagrid-even">
+                    <td class="datagrid" align="center">
+                        6
+                    </td>
+                    <td class="datagrid">
+                        Write out explicitly the terms of $\delta J$ when only $\vb{T}$ is perturbed and eliminate all
+                        variations larger than second order. Our assumption that $\vb{T}=\vb{id}$ implies
+                        $\nabla\vb{T}\equiv \vb{I}$ and that $\triangle_x v=0$ on $\Omega_0$.
+                        \begin{equation}
+                        (\delta J)_v=
+                        \int_{\Omega_0} [-2 \nabla v \cdot \nabla(\delta\vb{T})\nabla v+ |\nabla v|^2 \mathop{\rm div}
+                        \delta\vb{T}] \d x
+                        \end{equation}
+                        We supplement the second term in the integrand with another term $\nabla(|\nabla v|^2) \cdot
+                        \delta\vb{T}$ to make it a divergence.
+                        \begin{equation} \label{lap-getdiv-1}
+                        \begin{aligned}
+                        |\nabla v|^2 \divergence \delta\vb{T}
+                        &= \divergence(|\nabla v|^2\delta\vb{T}) - \nabla(|\nabla v|^2) \cdot \delta\vb{T}\\
+                        &= \divergence(|\nabla v|^2\delta\vb{T}) - 2\delta\vb{T}\cdot \nabla^2v\nabla v.
+                        \end{aligned}
+                        \end{equation}
+                    </td>
+                </tr>
+                <tr class="datagrid-odd">
+                    <td class="datagrid" align="center">
+                        7
+                    </td>
+                    <td class="datagrid">
+                        Then, combining the first integrand with the new term, we get a term that looks like
+                        $$-2\nabla v \cdot \nabla(\delta\vb{T})\nabla v - 2\delta\vb{T}\cdot \nabla^2v\nabla v.$$
+                        We would like to prove that it is indeed a divergence term, so that $(\delta J)_v$ can be
+                        reduced to a boundary integral. We perform the following operations.
+                        \begin{align*}
+                        &\quad {-2} \nabla v \cdot \nabla(\delta\vb{T})\nabla v - 2\delta\vb{T}\cdot \nabla^2v\nabla v
+                        \\
+                        &=-2\nabla v \cdot [\nabla(\delta\vb{T})]^T\nabla v - 2\nabla v\cdot (\nabla^2 v)^T\delta\vb{T}
+                        \tag{Symmetry of Hessian}\\
+                        &=-2\nabla v \cdot \nabla(\delta\vb{T}\cdot \nabla v)
+                        \tag{$\nabla(\vb f\cdot\vb g)=(\nabla\vb f)^T\vb g+(\nabla\vb g)^T\vb f$.} \\
+                        &=-2 \mathop{\rm div} [(\delta\vb{T}\cdot\nabla v)\nabla v] + 2\triangle v
+                        (\delta\vb{T}\cdot\nabla{v}) \\
+                        &=-2 \mathop{\rm div} [(\delta\vb{T}\cdot\nabla v)\nabla v]. \tag{Remember $\triangle v=0$!}
+                        \end{align*}
+                        This gives us
+                        \begin{equation}
+                        2\nabla v \cdot \nabla(\delta\vb{T})\nabla v + 2\delta\vb{T}\cdot \nabla^2v\nabla v
+                        =2 \mathop{\rm div} [(\delta\vb{T}\cdot\nabla v)\nabla v].
+                        \end{equation}
+                    </td>
+                </tr>
+                <tr class="datagrid-even">
+                    <td class="datagrid" align="center">
+                        8
+                    </td>
+                    <td class="datagrid">
+                        Sidenote: you can verify the vector calculus rule
+                        \begin{equation}
+                        \nabla(\vb f\cdot\vb g)=(\nabla\vb f)^T\vb g+(\nabla\vb g)^T\vb f
+                        \end{equation}
+                        easily by breaking it into index sums.
+                    </td>
+                </tr>
+                <tr class="datagrid-odd">
+                    <td class="datagrid" align="center">
+                        9
+                    </td>
+                    <td class="datagrid">
+                        So far we have reduced the integrand fully to divergence terms. Finally,
+                        \begin{equation}
+                        \begin{aligned}
+                        (\delta J)_v&= \int_{\Omega_0} \mathop{\rm div} \left[ |\nabla v|^2\delta\vb{T}
+                        -2(\delta\vb{T}\cdot\nabla v) \nabla v \right] \d x \\
+                        &=\int_{\pt\Omega_0} \left[ |\nabla v|^2\delta\vb{T}\cdot\vb{n} -2(\delta\vb{T}\cdot\nabla v)
+                        \frac{\pt v}{\pt\vb{n}} \right]\d S(x).
+                        \end{aligned}
+                        \end{equation}
+                        The variation is in the form of a boundary integral that depends only on $\vb{T}$ and not on
+                        $\nabla\vb{T}$. This is reasonable because the solution to the Laplace's equation on a smooth
+                        domain is uniquely determined by the boundary values and the position of the boundary, and in
+                        this problem the position of the moving boundary is uniquely determined by the value of $\vb{T}$
+                        on $\pt\Omega_0$.
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <table width="95%" height="60" border="0" cellpadding="0" cellspacing="0" align="center">
+            <tbody>
+                <tr>
+                    <td height="12" align="center" bgcolor="#E0F7FF" class="black">CSS file ripped off from <a
+                            href="https://elective.pku.edu.cn">Elective</a></td>
+                </tr>
+                <tr>
+                    <td height="32" align="center" bgcolor="#E0F7FF" class="black">Email: **********@pku.edu.cn</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <script lang="JavaScript1.1" src="./ele.js"> </script>
+</body>
+
+</html>
